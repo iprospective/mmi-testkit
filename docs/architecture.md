@@ -32,8 +32,10 @@ Actifs existants à réutiliser :
    dans son propre `test/`. Ils sont versionnés avec le code qu'ils testent.
 3. **Manifeste + runner** : un fichier YAML décrit les suites, les environnements, les
    échantillons et les attentes ; le runner produit un rapport et un verdict.
-4. **Façade optionnelle `mmitest`** : si un écran d'admin est souhaité, un module dédié
-   *recette uniquement*, sans dépendance, appelle le runner. Il ne contient pas les tests.
+4. **Façade optionnelle `mmidevtools`** : si un écran d'admin est souhaité, un module
+   dédié *recette uniquement*, sans dépendance, appelle le runner. Il ne contient pas
+   les tests. Ce module porte aussi les templates canoniques de documentation
+   (`gitlab:dolibarr/dolibarr-module-mmidevtools`).
 
 ### Alternatives écartées
 
@@ -148,6 +150,11 @@ Trois artefacts, sans duplication :
 | `docs/technical.md` | doc technique (carte fonctionnalité → code) | développeur |
 | `AGENTS.md` | point d’entrée court pour les agents | agent |
 
+Les templates canoniques sont livrés par le module `mmidevtools`
+(`gitlab:dolibarr/dolibarr-module-mmidevtools`), qui complète ModuleBuilder sans
+modifier le cœur. Les fichiers de `docs/templates/` de ce dépôt sont des **exemples**
+pour le testkit ; en cas d’écart, `mmidevtools` fait foi.
+
 `docs/technical.md` et la partie « fonctionnalités » du README sont **générées** depuis
 `features.yml` + le descripteur par `gen-module-docs.py`. `AGENTS.md` reste court et
 renvoie vers ces fichiers ; il ne recopie pas la documentation.
@@ -235,14 +242,14 @@ Contenu cible, volontairement court :
    (hooks, constantes, tables, menus, droits, routes, assets).
 7. **Contrôles post-déploiement** et **go/no-go**.
 8. **Manifeste Calicote** et branchement MEP.
-9. **Façade `mmitest`** (optionnelle, recette uniquement).
+9. **Façade `mmidevtools`** (optionnelle, recette uniquement).
 
 ## Questions ouvertes
 
 - PHPUnit comme socle, ou runner maison conservé pour les tests CLI existants ?
 - Base dédiée par run ou transaction annulée systématique ?
 - Emplacement des fixtures partagées : dans le testkit ou dans chaque module ?
-- Périmètre exact de la façade `mmitest` (aucun écran, ou écran de lancement/rapport) ?
+- Périmètre exact de la façade `mmidevtools` (aucun écran, ou écran de lancement/rapport) ?
 - `features.yml` : versionné dans chaque module, ou centralisé dans le testkit avec
   un fichier par module ? (recommandation : dans le module, pour rester au plus près
   du code.)
