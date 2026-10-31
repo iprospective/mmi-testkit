@@ -1,0 +1,40 @@
+# Modèle de manifeste de fonctionnalités — à copier dans docs/features.yml du module.
+# Source de vérité : documentation, tests et AGENTS.md sont générés/complétés depuis ce fichier.
+schema: 1
+module: mmi<module>
+version: "0.0.0"
+compat:
+  dolibarr: ">=19.0 <22.0"          # plage testée ; à ajuster
+  modules:
+    mmicommon: ">=1.0"
+
+features:
+  - id: mmi<module>.<feature_id>     # ID stable, jamais renommé
+    title:
+      fr: "Titre court"
+      en: "Short title"
+    summary:
+      fr: "Ce que fait la fonctionnalité, pour qui, dans quel contexte."
+      en: "What the feature does, for whom, in which context."
+    status: stable                   # stable | beta | experimental | deprecated
+    since: "1.0"
+    until: null                      # version de retrait, ou null
+    deps: []                         # autres features/modules requis
+    entrypoints:
+      - type: page                   # page | ajax | api | cli | cron | hook | trigger | class | template
+        path: admin/setup.php
+        class: null
+        method: null
+      - type: hook
+        context: pdfgeneration
+        class: ActionsMMI<Module>
+        method: myHook
+    data:
+      tables: []                     # tables lues/écrites
+      columns: []                    # colonnes ajoutées/modifiées
+      extrafields: []                # élément.extrafield
+    config: []                       # constantes lues/écrites
+    permissions: []                  # droits requis
+    tests: []                        # chemins des suites/cas qui couvrent la feature
+    docs: "README.md#ancre"          # ancre utilisateur
+    notes: ""                        # limites connues, points d'attention
