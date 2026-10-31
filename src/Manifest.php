@@ -53,4 +53,12 @@ class Manifest
 	{
 		return isset($this->data['site']) ? (string) $this->data['site'] : 'unknown';
 	}
+
+	public function envName()
+	{
+		if (isset($this->data['env']['name'])) {
+			return (string) $this->data['env']['name'];
+		}
+		return $this->site();
+	}
 }

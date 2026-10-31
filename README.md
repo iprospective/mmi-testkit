@@ -48,8 +48,10 @@ php bin/mmi-test --manifest=manifests/19.0-mmi.yml \
   --dolibarr-root=/chemin/vers/htdocs --report=/tmp/report.json
 ```
 
-Options : `--subset`, `--list`, `--verbose`, `--keep` (debug). Le runner refuse de
-démarrer si `MMI_TEST_ENV` n'est pas présent.
+Options : `--subset`, `--list`, `--history`, `--diagnose`, `--report-dir`,
+`--verbose`, `--keep` (debug). Le runner refuse de démarrer si `MMI_TEST_ENV` n'est
+pas présent. Voir [`docs/reporting.md`](docs/reporting.md) pour l'historique et le
+diagnostic.
 
 ## Structure
 

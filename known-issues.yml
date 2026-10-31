@@ -1,0 +1,8 @@
+# Diagnostics connus par suite/check. Utilisés par `mmi-test --diagnose`.
+sales_chain:
+  createFromOrder:
+    hint: "Facture::createFromOrder() retourne -1 après création partielle ; le workflow bascule sur une création manuelle. Vérifier les extrafields/liaisons copiés depuis la commande. Voir RM3515."
+  "facture":
+    hint: "Échec de conversion commande -> facture : vérifier Facture::createFromOrder(), les extrafields et le module mmiproductdluo."
+  "paiement exception":
+    hint: "Vérifier la compatibilité PHP de pdf_sponge (round sur chaîne, ligne 886) et les hooks de paiement."
