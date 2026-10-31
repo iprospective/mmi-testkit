@@ -1,0 +1,9 @@
+site: dolibarr-test-20
+env:
+  name: dolibarr-test-20
+  url: https://dolibarr-test-20.test.iprospective.fr
+  database: dolibarr_test_20
+  php: "8.1"
+suites:
+  - id: sales_chain
+    class: Mmi\TestKit\Workflows\SalesChain

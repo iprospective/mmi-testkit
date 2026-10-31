@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+require dirname(__DIR__).'/src/Autoload.php';
+
+$app = new \Mmi\TestKit\Cli\Application();
+exit($app->run($argv));
