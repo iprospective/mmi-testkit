@@ -114,16 +114,128 @@ code de sortie exploitable en CI/MEP.
 - les tests qui écrivent en base refusent de tourner hors recette ;
 - le rapport indique le nombre de cas, les échecs et la raison.
 
+## Version-awareness
+
+Le testkit doit tourner sur plusieurs versions du **cœur**, du **fork** et des
+**modules**. Un test ne doit pas être écrit pour une seule version.
+
+- **Sources de vérité** : `DOL_VERSION`, descripteur du module (`$this->version`,
+  `$this->depends`), branche/tag git, et le bloc `compat` du manifeste de
+  fonctionnalités.
+- **Matrice** : `version cœur × version module × scénario d'installation`.
+- **Déclaration** : chaque suite déclare `requires: {dolibarr: ">=19.0 <21.0",
+  modules: {mmiproduct: ">=1.1"}}`. Le runner exécute, ou **skippe avec une raison
+  explicite** — jamais de succès silencieux.
+- **Adapters** : `CoreAdapter` par plage de versions (signatures, propriétés
+  renommées, tables déplacées) et `ModuleAdapter` si un module change son API. Les
+  tests n’embarquent pas de `if (version >= …)`.
+- **Scénarios** : installation **vide + un module**, installation **composée** (jeu
+  de modules), ou snapshot existant. Le runner résout les dépendances (descripteurs
+  + `compat`) et installe dans l’ordre.
+- **Rapport** : matrice versions × modules × tests, avec exécutés / skippés / échoués.
+
+## Manifeste de fonctionnalités
+
+Chaque module porte un inventaire **machine-readable** qui sert à la fois de
+documentation, de base aux tests et de source pour `AGENTS.md`.
+
+Trois artefacts, sans duplication :
+
+| Fichier | Rôle | Public |
+|---|---|---|
+| `README.md` | présentation, installation, usage | utilisateur |
+| `docs/features.yml` | **source de vérité** des fonctionnalités | outil + humain |
+| `docs/technical.md` | doc technique (carte fonctionnalité → code) | développeur |
+| `AGENTS.md` | point d’entrée court pour les agents | agent |
+
+`docs/technical.md` et la partie « fonctionnalités » du README sont **générées** depuis
+`features.yml` + le descripteur par `gen-module-docs.py`. `AGENTS.md` reste court et
+renvoie vers ces fichiers ; il ne recopie pas la documentation.
+
+### Schéma `features.yml`
+
+- `schema` : version du schéma.
+- `module`, `version`, `compat` (`dolibarr`, `modules`).
+- `features[]` :
+  - `id` stable (`mmidocuments.vat_notice`), `title` fr/en, `summary` fr/en ;
+  - `status` (`stable`, `beta`, `experimental`, `deprecated`), `since`, `until` ;
+  - `entrypoints[]` : `page`, `ajax`, `api`, `cli`, `cron`, `hook`, `trigger`,
+    `class`, `template` — avec chemin, classe/méthode ou contexte ;
+  - `data` : tables, colonnes, extrafields ;
+  - `config` : constantes lues/écrites ;
+  - `permissions` : droits requis ;
+  - `deps` : modules et features requis ;
+  - `tests[]` : suites/cas qui couvrent la fonctionnalité ;
+  - `docs` : ancre README ou section technique.
+
+### Règles de cohérence
+
+- toute fonctionnalité déclarée a **au moins un entrypoint** et **au moins un test**
+  (ou une justification explicite) ;
+- tout hook, menu, route, trigger, constante ou table déclaré est rattaché à une
+  fonctionnalité, ou marqué `infra` ;
+- les IDs de fonctionnalités sont **stables** entre versions ; un retrait passe par
+  `until` + `status: deprecated`, jamais par suppression silencieuse ;
+- le schéma est validé en CI ; un module sans `features.yml` est signalé.
+
+### Exemple
+
+```yaml
+schema: 1
+module: mmidocuments
+version: 1.2.0
+compat:
+  dolibarr: ">=19.0 <22.0"
+  modules: {mmicommon: ">=1.0"}
+features:
+  - id: mmidocuments.vat_notice
+    title:
+      fr: Mentions d'exonération de TVA sur les PDF
+      en: VAT exemption notices on PDFs
+    status: stable
+    since: 1.0
+    entrypoints:
+      - {type: hook, context: pdfgeneration, class: ActionsMMIDocuments, method: VATNotificationOnPDF}
+    data: {tables: [], extrafields: [societe.tva_intra, socpeople.tva_intra]}
+    config: [MMIDOCUMENTS_VAT_NOTIF_PDF_DISPLAY]
+    tests: [custom/mmidocuments/test/phpunit/MMIDocumentsFunctionalTest.php]
+    docs: README.md#mentions-de-tva-et-exonérations
+```
+
+### `AGENTS.md`
+
+Contenu cible, volontairement court :
+
+```markdown
+# AGENTS.md — MMI<Module>
+
+## But
+## Commandes (lint, tests, upgrade)
+## Carte du code (dossiers, classes, hooks)
+## Fonctionnalités
+- source : docs/features.yml
+- doc technique : docs/technical.md
+## Versions supportées
+## Guardrails (pas de prod, mails/sync/PSP, secrets)
+## Où changer quoi
+```
+
 ## Feuille de route
 
-1. **Squelette** : README, ADR, licence, structure.
-2. **Runner minimal** : bootstrap, `TestCase`, rapport TAP, `--subset`.
-3. **Reprise de `chaine_vente_test.php`** : fixture rejouable + qualifier l'échec
+1. **Squelette** : README, ADR, licence, structure, schéma `features.yml`, templates
+   `technical.md` et `AGENTS.md`.
+2. **Runner minimal version-aware** : bootstrap, `TestCase`, `requires`, rapport TAP,
+   `--subset`.
+3. **Pilote manifeste** : `features.yml` sur `mmicommon`, `mmiproduct` et
+   `mmidocuments`, génération README/technical/AGENTS, validation CI.
+4. **Reprise de `chaine_vente_test.php`** : fixture rejouable + qualifier l'échec
    `Facture::createFromOrder()`.
-4. **Suites caisse et expédition/picking** : réutiliser les suites existantes.
-5. **Contrôles post-déploiement** et **go/no-go**.
-6. **Manifeste Calicote** et branchement MEP.
-7. **Façade `mmitest`** (optionnelle, recette uniquement).
+5. **Suites caisse et expédition/picking** : réutiliser les suites existantes.
+6. **Scénarios composés** : installations vide/composée, détection de collisions
+   (hooks, constantes, tables, menus, droits, routes, assets).
+7. **Contrôles post-déploiement** et **go/no-go**.
+8. **Manifeste Calicote** et branchement MEP.
+9. **Façade `mmitest`** (optionnelle, recette uniquement).
 
 ## Questions ouvertes
 
@@ -131,3 +243,7 @@ code de sortie exploitable en CI/MEP.
 - Base dédiée par run ou transaction annulée systématique ?
 - Emplacement des fixtures partagées : dans le testkit ou dans chaque module ?
 - Périmètre exact de la façade `mmitest` (aucun écran, ou écran de lancement/rapport) ?
+- `features.yml` : versionné dans chaque module, ou centralisé dans le testkit avec
+  un fichier par module ? (recommandation : dans le module, pour rester au plus près
+  du code.)
+- `technical.md` : généré à 100 %, ou rédigé puis complété par le générateur ?

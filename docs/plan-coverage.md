@@ -334,18 +334,24 @@ mmi-test --manifest manifests/pisceen.yml --env recette --ticket RM3515
 
 Sorties : TAP/JUnit/Markdown, code de sortie 0/1, verdict go/no-go.
 
+Chaque suite déclare aussi ses **versions** (`requires`) et le testkit lit le
+`docs/features.yml` des modules pour construire la matrice de scénarios (installation
+vide ou composée) et pour vérifier que chaque fonctionnalité déclarée a bien un test.
+Voir `docs/architecture.md` § « Version-awareness » et « Manifeste de fonctionnalités ».
+
 ## 10. Jalons
 
 | Jalon | Contenu | Critère |
 |---|---|---|
-| J1 | Squelette, bootstrap, `TestCase`, rapport TAP, manifeste, guards | une suite vide passe |
-| J2 | S1 chaîne de vente + S2 documents | vert sur Calicote et Pisceen |
-| J3 | S3 produits/stock + S4 expédition/réception | vert sur Calicote, Calyclay, Pisceen |
-| J4 | S5 paiements + S6 sync + S7 sécurité | vert sur Pisceen et Calicote |
-| J5 | Contrat de module + P1 Calicote | tous les modules Calicote couverts |
-| J6 | P1 Pisceen | MMIMAIL, GED, SAV, TVA, Younited, Redmine |
-| J7 | P1 Calyclay + MMI | projets, atelier, BTP, production, compta |
-| J8 | P3 post-déploiement + quotidien + CI/MEP | go/no-go exploitable |
+| J1 | Squelette, bootstrap, `TestCase`, rapport TAP, manifeste, guards, schéma `features.yml` | une suite vide passe |
+| J2 | Pilote `features.yml` + génération README/technical/AGENTS sur 2–3 modules | doc générée, schéma validé en CI |
+| J3 | S1 chaîne de vente + S2 documents | vert sur Calicote et Pisceen |
+| J4 | S3 produits/stock + S4 expédition/réception | vert sur Calicote, Calyclay, Pisceen |
+| J5 | S5 paiements + S6 sync + S7 sécurité | vert sur Pisceen et Calicote |
+| J6 | Contrat de module + P1 Calicote | tous les modules Calicote couverts |
+| J7 | P1 Pisceen | MMIMAIL, GED, SAV, TVA, Younited, Redmine |
+| J8 | P1 Calyclay + MMI | projets, atelier, BTP, production, compta |
+| J9 | P3 post-déploiement + quotidien + CI/MEP | go/no-go exploitable |
 
 Estimation indicative : **3 à 4 semaines** pour la première phase, hors écriture des
 tests les plus lourds (mail, sync, BTP) qui peuvent être découpés.
