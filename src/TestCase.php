@@ -24,6 +24,9 @@ class TestCase
 	/** @var array<int, string> */
 	public $steps = array();
 
+	/** @var array<int, array{label: string, ok: bool, got: mixed, want: mixed}> */
+	public $checks = array();
+
 	public function __construct($suite, $verbose = false)
 	{
 		$this->suite = $suite;
@@ -41,6 +44,7 @@ class TestCase
 	public function check($label, $got, $want)
 	{
 		$ok = ($got === $want);
+		$this->checks[] = array('label' => $label, 'ok' => $ok, 'got' => $got, 'want' => $want);
 		if ($ok) {
 			$this->oks++;
 		} else {
@@ -72,6 +76,7 @@ class TestCase
 	{
 		$this->fails++;
 		$this->failures[] = array('label' => $label, 'got' => $message, 'want' => 'ok');
+		$this->checks[] = array('label' => $label, 'ok' => false, 'got' => $message, 'want' => 'ok');
 		echo "FAIL  ".$label." : ".$message."\n";
 	}
 
@@ -80,7 +85,8 @@ class TestCase
 		return array(
 			'suite' => $this->suite,
 			'ok' => $this->fails === 0,
-			'checks' => $this->oks + $this->fails,
+			'checks' => $this->checks,
+			'checks_count' => $this->oks + $this->fails,
 			'passed' => $this->oks,
 			'failed' => $this->fails,
 			'failures' => $this->failures,
