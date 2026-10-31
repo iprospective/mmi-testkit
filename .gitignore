@@ -1,0 +1,9 @@
+# Runtime local
+/.env
+/vendor/
+/composer.lock
+/bin/mmi-test.local
+/var/
+/tmp/
+*.log
+.DS_Store
