@@ -1,0 +1,16 @@
+{
+  "name": "mmi/dolibarr-testkit",
+  "description": "Outillage de tests et de non-régression pour Dolibarr MMI",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "php": ">=7.4",
+    "symfony/yaml": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mmi\\TestKit\\": "src/"
+    }
+  },
+  "bin": ["bin/mmi-test"]
+}

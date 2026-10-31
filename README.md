@@ -2,11 +2,12 @@
 
 Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses modules.
 
-> **Statut : squelette / conception.** Le périmètre et l'architecture sont posés dans
-> [`docs/architecture.md`](docs/architecture.md), et le plan de couverture initial
+> **Statut : première campagne S1 opérationnelle** sur 19.0-mmi et 20.0-mmi-merge.
+> Le périmètre et l'architecture sont posés dans
+> [`docs/architecture.md`](docs/architecture.md), le plan de couverture initial
 > (Calicote, Calyclay, Pisceen, MMI) dans
-> [`docs/plan-coverage.md`](docs/plan-coverage.md). Le runner et les premières suites
-> restent à implémenter.
+> [`docs/plan-coverage.md`](docs/plan-coverage.md), et les résultats dans
+> [`docs/run-2026-11-01.md`](docs/run-2026-11-01.md).
 
 ## Ce que ce dépôt n'est pas
 
@@ -39,14 +40,28 @@ Fournir un socle commun pour :
 - **Isolation** : transaction annulée, mails/synchro/PSP coupés, aucune écriture vers
   un système de production.
 
-## Structure prévue
+## Démarrage rapide
+
+```bash
+composer install   # fallback YAML si l'extension php-yaml n'est pas disponible
+php bin/mmi-test --manifest=manifests/19.0-mmi.yml \
+  --dolibarr-root=/chemin/vers/htdocs --report=/tmp/report.json
+```
+
+Options : `--subset`, `--list`, `--verbose`, `--keep` (debug). Le runner refuse de
+démarrer si `MMI_TEST_ENV` n'est pas présent.
+
+## Structure
 
 ```text
 bin/mmi-test                 # point d'entrée CLI
-src/                         # bootstrap, TestCase, fixtures, guards, manifest, report
-tests/                       # tests de l'outil lui-même
+src/                         # bootstrap, TestCase, fixtures, guards, manifest, runner
+workflows/                   # parcours métier (S1 sales_chain, …)
+manifests/                   # 19.0-mmi.yml, 20.0-mmi.yml
+fixtures/                    # à venir : fixtures partagées et benchmarks
 docs/architecture.md         # décision et conventions
-examples/                    # manifestes et suites d'exemple
+docs/plan-coverage.md        # couverture cible
+docs/run-2026-11-01.md       # résultats de la première campagne
 ```
 
 ## Suivi
