@@ -3,7 +3,9 @@
 Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses modules.
 
 > **Statut : squelette / conception.** Le périmètre et l'architecture sont posés dans
-> [`docs/architecture.md`](docs/architecture.md). Le runner et les premières suites
+> [`docs/architecture.md`](docs/architecture.md), et le plan de couverture initial
+> (Calicote, Calyclay, Pisceen, MMI) dans
+> [`docs/plan-coverage.md`](docs/plan-coverage.md). Le runner et les premières suites
 > restent à implémenter.
 
 ## Ce que ce dépôt n'est pas
