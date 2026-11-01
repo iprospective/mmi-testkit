@@ -242,7 +242,7 @@ Une donnée collectée est **`draft`** jusqu’à revue. On stocke `fetched_at`,
 - Détection de conflits : quirks contradictoires, compatibilités incompatibles, versions qui
   se chevauchent.
 - **Pas de secrets, pas de client, pas de ticket** dans le dépôt.
-- Licence du code GPL/Apache ; contenu sous CC BY-SA 4.0 (à confirmer).
+- Code et contenu sous GPL-3.0-or-later (décision du 2026-11-01).
 
 ## 10. Relation avec PM
 
@@ -315,7 +315,7 @@ Karl consomme la vue `agents` :
 
 ## 15. Questions ouvertes
 
-- Licence du contenu (CC BY-SA 4.0 ou interne).
+- Licence du contenu : GPL-3.0-or-later (décision du 2026-11-01).
 - API en Python (aligné PM/Karl) ou PHP (aligné TestKit) ?
 - Niveau de collecte automatique accepté par source.
 - Politique de rétention/archivage.
