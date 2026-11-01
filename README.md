@@ -66,7 +66,20 @@ docs/plan-coverage.md        # couverture cible
 docs/run-2026-11-01.md       # résultats de campagne
 docs/anomalies.md           # anomalies et points ouverts
 docs/php-matrix.md          # matrice PHP
+docs/web-ui.md             # interface web
+public/                    # front controller + assets
+views/                     # vues
 ```
+
+## Interface web
+
+```bash
+scripts/serve-web.sh 8099
+# http://127.0.0.1:8099
+```
+
+Voir [`docs/web-ui.md`](docs/web-ui.md) (architecture, routes, sécurité, idées
+d’amélioration).
 
 ## Suivi
 
