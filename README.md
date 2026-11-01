@@ -9,7 +9,9 @@ Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses mo
 > [`docs/plan-coverage.md`](docs/plan-coverage.md), et les résultats dans
 > [`docs/run-2026-11-01.md`](docs/run-2026-11-01.md).
 >
-> **Cible d'architecture** : [`docs/cdc-mmi-kb.md`](docs/cdc-mmi-kb.md) (`mmi-dev-knowledge`) et
+> **CDC** : [`test-kit`](https://tasks.iprospective.fr/projects/test-kit/wiki/Cdc-test-kit) et
+> [`knowledge-base`](https://tasks.iprospective.fr/projects/knowledge-base/wiki/Cdc-mmi-dev-knowledge)
+> (sources PM, synchronisées dans le wiki). Voir aussi
 > [`docs/HANDOFF-2026-11-01.md`](docs/HANDOFF-2026-11-01.md) pour la reprise complète.
 
 ## Ce que ce dépôt n'est pas
