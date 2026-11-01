@@ -6,3 +6,8 @@ sales_chain:
     hint: "Échec de conversion commande -> facture : vérifier Facture::createFromOrder(), les extrafields et le module mmiproductdluo."
   "paiement exception":
     hint: "Vérifier la compatibilité PHP de pdf_sponge (round sur chaîne, ligne 886) et les hooks de paiement."
+documents:
+  "documents":
+    hint: "Vérifier mmiworkflow::pdf_build_address : $object->commande peut être null sur une expédition créée hors commande. Garde ajoutée dans l'env de test, à porter dans le module."
+  "expédition":
+    hint: "Vérifier mmiworkflow::pdf_build_address et le chargement de $object->commande avant génération PDF."

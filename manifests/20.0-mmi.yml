@@ -7,3 +7,11 @@ env:
 suites:
   - id: sales_chain
     class: Mmi\TestKit\Workflows\SalesChain
+  - id: documents
+    class: Mmi\TestKit\Workflows\Documents
+  - id: products_stock
+    class: Mmi\TestKit\Workflows\ProductsStock
+  - id: shipping
+    class: Mmi\TestKit\Workflows\Shipping
+  - id: payments
+    class: Mmi\TestKit\Workflows\Payments
