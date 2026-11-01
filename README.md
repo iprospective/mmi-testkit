@@ -2,7 +2,7 @@
 
 Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses modules.
 
-> **Statut : première campagne S1 opérationnelle** sur 19.0-mmi et 20.0-mmi-merge.
+> **Statut : campagnes S1–S5 opérationnelles** sur 19.0-mmi et 20.0-mmi-merge.
 > Le périmètre et l'architecture sont posés dans
 > [`docs/architecture.md`](docs/architecture.md), le plan de couverture initial
 > (Calicote, Calyclay, Pisceen, MMI) dans
@@ -69,8 +69,8 @@ docs/run-2026-11-01.md       # résultats de la première campagne
 ## Suivi
 
 - Ticket de suivi : **RM3515** (Calicote), requalifié vers cet outil.
-- Premier cas d'usage : chaîne de vente Dolibarr (devis → commande → facture → paiement),
-  puis caisse, expédition/picking et synchro boutique.
+- Cas couverts : chaîne de vente, documents/PDF, produits/stock/lot, expédition et
+  paiements. Suivants : synchro boutique, sécurité, benchmark.
 
 ## Licence
 
