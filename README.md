@@ -2,12 +2,15 @@
 
 Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses modules.
 
-> **Statut : campagnes S1–S5 opérationnelles** sur 19.0-mmi et 20.0-mmi-merge.
+> **Statut : campagnes S1–S7 opérationnelles** sur 19.0-mmi et 20.0-mmi-merge.
 > Le périmètre et l'architecture sont posés dans
 > [`docs/architecture.md`](docs/architecture.md), le plan de couverture initial
 > (Calicote, Calyclay, Pisceen, MMI) dans
 > [`docs/plan-coverage.md`](docs/plan-coverage.md), et les résultats dans
 > [`docs/run-2026-11-01.md`](docs/run-2026-11-01.md).
+>
+> **Cible d'architecture** : [`docs/cdc-mmi-kb.md`](docs/cdc-mmi-kb.md) (`mmi-kb`) et
+> [`docs/HANDOFF-2026-11-01.md`](docs/HANDOFF-2026-11-01.md) pour la reprise complète.
 
 ## Ce que ce dépôt n'est pas
 
@@ -67,6 +70,8 @@ docs/run-2026-11-01.md       # résultats de campagne
 docs/anomalies.md           # anomalies et points ouverts
 docs/php-matrix.md          # matrice PHP
 docs/web-ui.md             # interface web
+docs/cdc-mmi-kb.md         # CDC cible mmi-kb
+docs/HANDOFF-2026-11-01.md  # état consolidé / reprise
 public/                    # front controller + assets
 views/                     # vues
 ```

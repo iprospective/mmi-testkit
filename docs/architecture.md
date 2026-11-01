@@ -1,5 +1,9 @@
 # Architecture — MMI Dolibarr TestKit
 
+> **Évolution cible** : le TestKit devient `mmi-testkit` (core + plugins) et s'appuie sur
+> `mmi-kb` pour la connaissance produit. Voir [`cdc-mmi-kb.md`](cdc-mmi-kb.md) et
+> [`HANDOFF-2026-11-01.md`](HANDOFF-2026-11-01.md).
+
 ## Contexte
 
 Le protocole de test Calicote (RM3515) est né après l'incident TVA du 2026-10-21 : une
