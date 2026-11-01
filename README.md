@@ -63,7 +63,9 @@ manifests/                   # 19.0-mmi.yml, 20.0-mmi.yml
 fixtures/                    # à venir : fixtures partagées et benchmarks
 docs/architecture.md         # décision et conventions
 docs/plan-coverage.md        # couverture cible
-docs/run-2026-11-01.md       # résultats de la première campagne
+docs/run-2026-11-01.md       # résultats de campagne
+docs/anomalies.md           # anomalies et points ouverts
+docs/php-matrix.md          # matrice PHP
 ```
 
 ## Suivi

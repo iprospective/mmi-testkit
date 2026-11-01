@@ -15,3 +15,7 @@ suites:
     class: Mmi\TestKit\Workflows\Shipping
   - id: payments
     class: Mmi\TestKit\Workflows\Payments
+  - id: sync
+    class: Mmi\TestKit\Workflows\Sync
+  - id: security
+    class: Mmi\TestKit\Workflows\Security

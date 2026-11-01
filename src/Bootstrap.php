@@ -23,6 +23,11 @@ class Bootstrap
 		$GLOBALS['conf'] = $conf;
 		$GLOBALS['langs'] = $langs;
 		$GLOBALS['mysoc'] = $mysoc;
+		foreach (array('dolibarr_main_db_host', 'dolibarr_main_db_port', 'dolibarr_main_db_name', 'dolibarr_main_db_user', 'dolibarr_main_db_pass', 'dolibarr_main_data_root', 'dolibarr_main_document_root') as $globalName) {
+			if (isset($$globalName)) {
+				$GLOBALS[$globalName] = $$globalName;
+			}
+		}
 
 		/** @var object $db */
 		/** @var object $conf */
