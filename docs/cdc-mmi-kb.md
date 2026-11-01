@@ -1,11 +1,12 @@
-# CDC — `mmi-kb`
+# CDC — `mmi-dev-knowledge`
 
 ## Base de connaissance transverse des outils maintenus
 
-**Statut** : conception validée, implémentation à venir  
-**Nom** : `mmi-kb` (CLI et outil) — dépôt `iprospective/mmi-kb`  
-**Ancien nom de travail** : `mmi-dev-knowledge`  
-**Projet Redmine** : `test-kit`  
+**Statut** : conception validée, implémentation démarrée  
+**Nom** : `mmi-dev-knowledge` (dépôt/workspace) ; `mmi-kb` (CLI)  
+**Dépôt** : `iprospective/mmi-dev-knowledge`  
+**Ancien nom de travail** : `mmi-kb`  
+**Projet Redmine** : `knowledge-base`  
 **Client** : `iprospective`
 
 ---
@@ -119,7 +120,7 @@ license:dolibarr/gpl-3.0
 ## 5. Arborescence
 
 ```text
-mmi-kb/
+mmi-dev-knowledge/
   schema/                       # JSON Schema des kinds
   tools/
     dolibarr/
@@ -256,7 +257,7 @@ PM est la **mémoire projet** et le **workflow**. `mmi-kb` est le **savoir produ
     refs: [tool:dolibarr, component:dolibarr/mmiproduct, doc:dolibarr/hooks]
     target: tools/dolibarr/components/mmiproduct/hooks.yml
   ```
-- La tâche exige une MR `mmi-kb`, vérifie le caractère générique et enregistre le commit
+- La tâche exige une MR `mmi-dev-knowledge`, vérifie le caractère générique et enregistre le commit
   knowledge dans son journal.
 - `mmi-kb` ne référence jamais la tâche, le client ou le ticket.
 - Un cas client peut être promu en quirk générique après abstraction, sans référence client.
