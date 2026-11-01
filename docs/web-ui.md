@@ -38,6 +38,20 @@ Ou Apache : docroot `public/`, `AllowOverride All` pour `.htaccess`, et variable
 `MMI_TESTKIT_WEB_PASSWORD` / `MMI_TESTKIT_REPORT_DIR` via `SetEnv` (ne pas committer le
 mot de passe).
 
+## Déploiement actuel (dev)
+
+- URL : `https://dolibarr-testkit.iprospective.fr`
+- DNS : CNAME `dolibarr-testkit.iprospective.fr → dev.iprospective.net.` dans la zone
+  `iprospective.fr` de BIND sur le conteneur `core` (série `2026110101`).
+- Vhost : `/etc/apache2/sites-available/dolibarr-testkit.conf` sur `dev`, docroot
+  `/home/siteadm/iprospective/public/dolibarr-test/toolkit/public`.
+- PHP-FPM : pool `dolibarr-testkit-81`, socket `/run/php/dolibarr-testkit-81.sock`.
+- Secrets : mot de passe web dans `/root/.dolibarr-testkit-webpass` (600) sur `dev`,
+  injecté via `env[MMI_TESTKIT_WEB_PASSWORD]` du pool ; `report_dir`/`job_dir` via
+  `env[...]`.
+- Certificat : `/etc/letsencrypt/live/dolibarr-testkit.iprospective.fr/` (HTTP-01,
+  docroot ACME sur le vhost 80) ; renouvellement dry-run validé.
+
 ## Sécurité
 
 - Authentification par mot de passe (env) ou hash bcrypt.
