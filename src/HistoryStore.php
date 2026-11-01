@@ -91,6 +91,9 @@ class HistoryStore
 
 		foreach ($latest['suites'] as $suite) {
 			$suiteId = $suite['suite'];
+			if (!is_array($suite['checks'])) {
+				continue;
+			}
 			foreach ($suite['checks'] as $check) {
 				if (empty($check['ok'])) {
 					$failures[] = $this->trace($runs, $suiteId, $check, 'failure');
@@ -168,6 +171,9 @@ class HistoryStore
 	{
 		foreach ($run['suites'] as $suite) {
 			if ($suite['suite'] !== $suiteId) {
+				continue;
+			}
+			if (!is_array($suite['checks'])) {
 				continue;
 			}
 			foreach ($suite['checks'] as $check) {

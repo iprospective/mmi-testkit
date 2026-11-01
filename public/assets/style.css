@@ -1,0 +1,84 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #fff;
+  --text: #1d2433;
+  --muted: #667085;
+  --line: #e4e7ec;
+  --accent: #2f5bea;
+  --ok: #027a48;
+  --ok-bg: #ecfdf3;
+  --ko: #b42318;
+  --ko-bg: #fef3f2;
+  --run: #b54708;
+  --run-bg: #fffaeb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px; background: #101828; color: #fff;
+}
+.topbar a { color: #d0d5dd; margin-left: 18px; }
+.topbar .brand a { color: #fff; font-weight: 700; margin: 0; font-size: 1.1rem; }
+main { max-width: 1180px; margin: 0 auto; padding: 28px; }
+footer { text-align: center; color: var(--muted); padding: 28px; font-size: .8rem; }
+h1, h2 { line-height: 1.2; }
+h1 { font-size: 1.6rem; margin: 0 0 6px; }
+h2 { font-size: 1.15rem; margin-top: 28px; }
+.page-head { margin-bottom: 20px; }
+.opacity { color: var(--muted); }
+.small { font-size: .82rem; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.card, .panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px; margin-bottom: 18px;
+}
+.card h2 { margin-top: 0; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: .78rem; font-weight: 600; }
+.badge.ok { color: var(--ok); background: var(--ok-bg); }
+.badge.ko { color: var(--ko); background: var(--ko-bg); }
+.badge.run { color: var(--run); background: var(--run-bg); }
+.ko-text { color: var(--ko); font-weight: 600; }
+.flash { padding: 12px 16px; border-radius: 8px; margin-bottom: 18px; }
+.flash.success { background: var(--ok-bg); color: var(--ok); }
+.flash.error { background: var(--ko-bg); color: var(--ko); }
+table.grid { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+table.grid th, table.grid td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.grid th { background: #f9fafb; font-size: .82rem; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+table.grid tr:last-child td { border-bottom: none; }
+tr.row-fail td { background: #fff5f4; }
+.list-warn, .list-fail { padding-left: 22px; }
+.list-warn li { color: var(--run); }
+.list-fail li { color: var(--ko); }
+.button, button {
+  display: inline-block; background: var(--accent); color: #fff; border: 0;
+  border-radius: 7px; padding: 8px 14px; font: inherit; cursor: pointer;
+}
+.button:hover, button:hover { text-decoration: none; opacity: .92; }
+.inline { display: flex; gap: 10px; align-items: center; }
+select, input[type=password], input[type=text] {
+  border: 1px solid var(--line); border-radius: 7px; padding: 8px 10px; font: inherit; background: #fff;
+}
+.checks { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 10px 0 18px; }
+.checks label { color: var(--text); }
+pre.log, pre.markdown {
+  background: #101828; color: #e4e7ec; padding: 16px; border-radius: 10px;
+  overflow: auto; max-height: 520px; font-size: .82rem;
+}
+pre.markdown { background: #fff; color: var(--text); border: 1px solid var(--line); white-space: pre-wrap; }
+details { margin: 12px 0 24px; }
+summary { cursor: pointer; color: var(--accent); margin-bottom: 10px; }
+.login-page { display: grid; place-items: center; min-height: 100vh; }
+.login-box { width: min(420px, 92vw); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 26px; }
+.login-box form { display: grid; gap: 14px; margin-top: 18px; }
+.login-box label { display: grid; gap: 6px; color: var(--muted); }
+code { background: #f2f4f7; padding: 1px 4px; border-radius: 4px; }

@@ -9,3 +9,7 @@
 .DS_Store
 
 /reports/
+
+/config/envs.php
+/var/reports/
+/public/assets/*.map
