@@ -18,9 +18,9 @@ class BaseController
 		$this->view = new View($config['views_dir'], $config);
 	}
 
-	protected function render($template, $data = array())
+	protected function render($template, $data = array(), $layout = 'layout')
 	{
-		return new Response($this->view->render($template, $data));
+		return new Response($this->view->render($template, $data, $layout));
 	}
 
 	protected function redirect($url, $status = 302)
