@@ -10,8 +10,10 @@ Dolibarr, PrestaShop, Nextcloud, WordPress, etc.
 
 MMI TestKit est utilisé **conjointement avec Karl/PM** — le même outil,
 [`karl-ai-project-manager`](https://github.com/iprospective/karl-ai-project-manager).
-Karl/PM décrit les tâches et les environnements de test, TestKit exécute les suites
-et produit le verdict, Karl/PM lit les rapports. TestKit ne remplace pas Karl/PM.
+Karl/PM est le **gestionnaire de projet assisté par IA, modulaire** : il porte le
+projet, les tâches, les décisions, les environnements et les workflows. TestKit
+exécute les suites et produit le verdict ; Karl/PM lit les rapports. TestKit ne
+remplace pas Karl/PM.
 
 > **État** : le moteur et le **premier plugin Dolibarr** sont opérationnels.
 > Le split `core/` + `plugins/` est en cours (RM3586). Les plugins PrestaShop,
