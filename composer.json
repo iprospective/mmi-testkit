@@ -9,10 +9,10 @@
   },
   "autoload": {
     "psr-4": {
-      "Mmi\\TestKit\\": "src/"
+      "Mmi\\TestKit\\": "core/src/"
     }
   },
   "bin": [
-    "bin/mmi-test"
+    "core/bin/mmi-test"
   ]
 }
