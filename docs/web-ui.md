@@ -18,17 +18,17 @@ src/Model/RunJob.php      # modèle de job
 src/View/                 # rendu de vues + helpers
 views/                    # layout, dashboard, reports, report, run, anomalies, login
 config/app.php            # chemins, report_dir, job_dir
-config/envs.php           # mapping env → htdocs/PHP (copier envs.example.php)
+plugins/dolibarr/config/envs.php           # mapping env → htdocs/PHP (copier envs.example.php)
 public/assets/style.css
 ```
 
-Le CLI `bin/mmi-test` reste la source d’exécution ; l’interface web lit l’historique
+Le CLI `core/bin/mmi-test` reste la source d’exécution ; l’interface web lit l’historique
 et peut lancer un run en arrière-plan (`RunService`).
 
 ## Démarrage
 
 ```bash
-cp config/envs.example.php config/envs.php   # adapter les chemins
+cp plugins/dolibarr/config/envs.example.php plugins/dolibarr/config/envs.php   # adapter les chemins
 cp .env.example .env                         # définir MMI_TESTKIT_WEB_PASSWORD
 scripts/serve-web.sh 8099
 # http://127.0.0.1:8099
@@ -44,7 +44,7 @@ mot de passe).
 - DNS : CNAME `testkit.iprospective.fr → dev.iprospective.net.` dans la zone
   `iprospective.fr` de BIND sur le conteneur `core` (série `2026110101`).
 - Vhost : `/etc/apache2/sites-available/dolibarr-testkit.conf` sur `dev`, docroot
-  `/home/siteadm/iprospective/public/dolibarr-test/toolkit/public`.
+  `/home/siteadm/iprospective/public/dolibarr-test/toolkit/core/public`.
 - PHP-FPM : pool `dolibarr-testkit-81`, socket `/run/php/dolibarr-testkit-81.sock`.
 - Secrets : mot de passe web dans `/root/.dolibarr-testkit-webpass` (600) sur `dev`,
   injecté via `env[MMI_TESTKIT_WEB_PASSWORD]` du pool ; `report_dir`/`job_dir` via
@@ -57,7 +57,7 @@ mot de passe).
 - Authentification par mot de passe (env) ou hash bcrypt.
 - CSRF sur les POST, sessions HttpOnly/SameSite.
 - Échappement HTML systématique (`e()`).
-- Lancer un run : manifeste limité à `manifests/`, racine limitée aux envs configurés,
+- Lancer un run : manifeste limité à `plugins/dolibarr/manifests/`, racine limitée aux envs configurés,
   sous-ensemble limité aux suites du manifeste.
 - Logs de jobs en `text/plain`.
 
