@@ -40,8 +40,8 @@ mot de passe).
 
 ## Déploiement actuel (dev)
 
-- URL : `https://dolibarr-testkit.iprospective.fr`
-- DNS : CNAME `dolibarr-testkit.iprospective.fr → dev.iprospective.net.` dans la zone
+- URL : `https://testkit.iprospective.fr`
+- DNS : CNAME `testkit.iprospective.fr → dev.iprospective.net.` dans la zone
   `iprospective.fr` de BIND sur le conteneur `core` (série `2026110101`).
 - Vhost : `/etc/apache2/sites-available/dolibarr-testkit.conf` sur `dev`, docroot
   `/home/siteadm/iprospective/public/dolibarr-test/toolkit/public`.
@@ -49,7 +49,7 @@ mot de passe).
 - Secrets : mot de passe web dans `/root/.dolibarr-testkit-webpass` (600) sur `dev`,
   injecté via `env[MMI_TESTKIT_WEB_PASSWORD]` du pool ; `report_dir`/`job_dir` via
   `env[...]`.
-- Certificat : `/etc/letsencrypt/live/dolibarr-testkit.iprospective.fr/` (HTTP-01,
+- Certificat : `/etc/letsencrypt/live/testkit.iprospective.fr/` (HTTP-01,
   docroot ACME sur le vhost 80) ; renouvellement dry-run validé.
 
 ## Sécurité
