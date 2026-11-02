@@ -2,6 +2,9 @@
 
 Outillage de **tests et de non-régression** pour le fork Dolibarr MMI et ses modules.
 
+> Dépôt public : <https://github.com/iprospective/mmi-testkit>  
+> Licence : GPL-3.0-or-later.
+
 > **Statut : campagnes S1–S7 opérationnelles** sur 19.0-mmi et 20.0-mmi-merge.
 > Le périmètre et l'architecture sont posés dans
 > [`docs/architecture.md`](docs/architecture.md), le plan de couverture initial
