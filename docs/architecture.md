@@ -1,8 +1,8 @@
-# Architecture — MMI Dolibarr TestKit
+# Architecture — MMI TestKit
 
-> **Évolution cible** : le TestKit devient `mmi-testkit` (core + plugins) et s'appuie sur
-> `mmi-kb` pour la connaissance produit. Voir [`cdc-mmi-kb.md`](cdc-mmi-kb.md) et
-> [`HANDOFF-2026-11-01.md`](HANDOFF-2026-11-01.md).
+> `mmi-testkit` est un moteur générique (core + plugins). Dolibarr est le premier
+> plugin ; PrestaShop, Nextcloud et WordPress sont planifiés. Voir le CDC et le
+> handoff pour l'état courant.
 
 ## Contexte
 
