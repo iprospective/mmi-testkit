@@ -27,6 +27,9 @@ class View
 	{
 		$data['config'] = $this->config;
 		$content = $this->renderFile($template, $data);
+		if ($layout === null || $layout === '') {
+			return $content;
+		}
 		$data['content'] = $content;
 		return $this->renderFile($layout, $data);
 	}

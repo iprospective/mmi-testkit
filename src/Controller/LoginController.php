@@ -17,7 +17,7 @@ class LoginController extends BaseController
 			'configured' => Auth::isConfigured(),
 			'error' => Session::pullFlash('error'),
 			'csrf' => Csrf::token(),
-		));
+		), null);
 	}
 
 	public function login($request, $params)
