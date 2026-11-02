@@ -53,8 +53,8 @@ Actifs existants à réutiliser :
 ## Composants
 
 ```text
-bin/mmi-test
-src/
+core/bin/mmi-test
+core/src/
   Bootstrap/        # chargement conf.php + master.inc.php
   TestCase/         # assertions, cycle de vie, rapport
   Fixtures/         # jeux de données rejouables (clients, produits, lots, TVA)

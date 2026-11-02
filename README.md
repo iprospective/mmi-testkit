@@ -16,7 +16,7 @@ exécute les suites et produit le verdict ; Karl/PM lit les rapports. TestKit ne
 remplace pas Karl/PM.
 
 > **État** : le moteur et le **premier plugin Dolibarr** sont opérationnels.
-> Le split `core/` + `plugins/` est en cours (RM3586). Les plugins PrestaShop,
+> Le split `core/` + `plugins/dolibarr` est effectué. Les plugins PrestaShop,
 > Nextcloud et WordPress sont planifiés, pas encore livrés.
 >
 > CDC : [test-kit](https://tasks.iprospective.fr/projects/test-kit/wiki/Cdc-test-kit)
@@ -60,24 +60,25 @@ bootstrap, les fixtures, les workflows, les manifests et la configuration d'env.
 
 ```text
 core/                       # runner, TestCase, manifest, report, history, http, web
+  bin/mmi-test
+  src/
+  public/  views/
+  config/
 plugins/
   dolibarr/                 # bootstrap, fixtures, workflows, manifests, envs
   prestashop/               # à venir
   nextcloud/                # à venir
   wordpress/                # à venir
-bin/mmi-test
-public/  views/
 docs/
 ```
 
-Le split est en cours. Tant qu'il n'est pas terminé, les éléments du plugin Dolibarr
-vivent encore dans l'arborescence historique.
+Le split est effectué : le moteur ne contient plus de chemin Dolibarr.
 
 ## Démarrage — plugin Dolibarr
 
 ```bash
 composer install   # fallback YAML si l'extension php-yaml n'est pas disponible
-php bin/mmi-test --manifest=manifests/19.0-mmi.yml \
+php core/bin/mmi-test --manifest=plugins/dolibarr/manifests/19.0-mmi.yml \
   --dolibarr-root=/chemin/vers/htdocs --report=/tmp/report.json
 ```
 
@@ -88,7 +89,7 @@ pas présent. Voir [`docs/reporting.md`](docs/reporting.md).
 ## Interface web
 
 ```bash
-scripts/serve-web.sh 8099
+core/scripts/serve-web.sh 8099
 # http://127.0.0.1:8099
 ```
 
@@ -98,17 +99,18 @@ Voir [`docs/web-ui.md`](docs/web-ui.md).
 ## Structure actuelle
 
 ```text
-bin/mmi-test                 # point d'entrée CLI
-src/                         # moteur et classes du premier plugin
-workflows/                   # workflows Dolibarr (S1 sales_chain, …)
-manifests/                   # manifests Dolibarr
-docs/architecture.md         # décision et conventions
-docs/plan-coverage.md        # couverture Dolibarr
-docs/anomalies.md            # anomalies et points ouverts
-docs/php-matrix.md           # matrice PHP
-docs/web-ui.md               # interface web
-public/                      # front controller + assets
-views/                       # vues
+core/                        # moteur générique : CLI, API, UI, runner, manifests, reports
+core/src/                    # TestCase, Runner, Manifest, Http, View, services
+core/public/                 # front controller + assets
+core/views/                  # vues
+core/config/app.php          # configuration du moteur
+plugins/dolibarr/
+  src/                       # Bootstrap, Environment, Fixtures Dolibarr
+  workflows/                 # parcours Dolibarr (S1 sales_chain, …)
+  manifests/                 # manifests Dolibarr
+  config/envs.php            # environnements Dolibarr
+  scripts/php-matrix.sh      # matrice PHP Dolibarr
+docs/                        # documentation projet
 ```
 
 ## Suivi

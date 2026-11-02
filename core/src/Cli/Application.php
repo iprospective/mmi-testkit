@@ -31,7 +31,7 @@ class Application
 			return 0;
 		}
 
-		$reportDir = isset($options['report-dir']) ? $options['report-dir'] : dirname(__DIR__, 2).'/reports';
+		$reportDir = isset($options['report-dir']) ? $options['report-dir'] : dirname(__DIR__, 3).'/reports';
 		$store = new HistoryStore($reportDir);
 
 		if (isset($options['history'])) {

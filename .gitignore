@@ -10,6 +10,6 @@
 
 /reports/
 
-/config/envs.php
+/plugins/dolibarr/config/envs.php
 /var/reports/
 /public/assets/*.map
