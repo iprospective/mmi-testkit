@@ -1,6 +1,6 @@
 {
-  "name": "mmi/dolibarr-testkit",
-  "description": "Outillage de tests et de non-régression pour Dolibarr MMI",
+  "name": "mmi/testkit",
+  "description": "Socle generique de tests et de non-regression pour applications web et ERP",
   "type": "project",
   "license": "GPL-3.0-or-later",
   "require": {
@@ -12,5 +12,7 @@
       "Mmi\\TestKit\\": "src/"
     }
   },
-  "bin": ["bin/mmi-test"]
+  "bin": [
+    "bin/mmi-test"
+  ]
 }
